@@ -8,3 +8,11 @@ The Sunset Riders project is a Unity C# programming language as a learning exerc
 * Character movement by keys.
 * Camera configuration.
 * Create animation (walking, jump).
+
+## Keys Game Manual
+
+* W: Not defined yet
+* D: move forward
+* A: move backwards
+* S: Not defined yet
+* C: jump
