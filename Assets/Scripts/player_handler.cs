@@ -12,6 +12,7 @@ public class player_handler : MonoBehaviour
     public GameObject spr2;
     private Vector2 pos_min;
     private Vector2 pos_max;
+    public GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +85,7 @@ public class player_handler : MonoBehaviour
             Debug.Log("S");
         }
 
-        if (Input.GetKeyUp(KeyCode.C) && is_grounded) {
+        if (Input.GetKeyUp(KeyCode.C) && is_grounded) { // Jump
             GetComponent<Animator>().SetInteger("estado", 2);
             velocidad.y += vel_jump;
             is_grounded = false;
@@ -96,6 +97,10 @@ public class player_handler : MonoBehaviour
             {
                 spr2.transform.position += new Vector3(0.01f, 0, 0);
             }
+        }
+        
+        if (Input.GetKeyDown(KeyCode.X)){
+          GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
         }
 
     }
