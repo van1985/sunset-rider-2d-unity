@@ -10,6 +10,9 @@ public class player_handler : MonoBehaviour
     public float vel_jump;
     public GameObject spr1;
     public GameObject spr2;
+    private Vector2 pos_min;
+    private Vector2 pos_max;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,8 @@ public class player_handler : MonoBehaviour
 
         vidasJugador = 2;
         nombreJugador = "GAME OVER";
+        pos_min = GameObject.Find("Level_min").transform.position;
+        pos_max = GameObject.Find("Level_max").transform.position;
     }
 
     // Update is called once per frame
@@ -102,7 +107,17 @@ public class player_handler : MonoBehaviour
         }
 
         GetComponent<Rigidbody2D>().position += velocidad * Time.deltaTime;
+        checkBounds();
+    }
 
+    void checkBounds() {
+        if (GetComponent<Rigidbody2D>().position.x > pos_max.x)
+        {
+            GetComponent<Rigidbody2D>().position = new Vector2(pos_max.x, GetComponent<Rigidbody2D>().position.y);
+        }
+        else if ( GetComponent<Rigidbody2D>().position.x < pos_min.x) {
+            GetComponent<Rigidbody2D>().position = new Vector2(pos_min.x, GetComponent<Rigidbody2D>().position.y);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
